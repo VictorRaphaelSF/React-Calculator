@@ -7,7 +7,7 @@ function App() {
   const [operador, setOperador] = useState('');
   const [conta, setConta] = useState('');
   const [valConta, setValConta] = useState(false);
-
+  const maxLenght = 18;
 
   const calculateResult = () => {
     if (operador == "÷") {
@@ -19,7 +19,6 @@ function App() {
     }else if (operador == "-") {
       setNumExib(parseFloat(vlPass) - parseFloat(numExib));
     }
-
     if (!valConta) {
       setConta([...conta, `${vlPass} ${operador} ${numExib} = `]);
       setValConta(true);
@@ -68,8 +67,9 @@ function App() {
     <>
       <div className='div-centro'>
         <div className='calc-esq'>
-          <div className='div-res'>{numExib}
-          <div className='div-histlow'>{conta}</div>
+        <div className='div-res'>
+            {numExib.length > maxLenght ? '...' + numExib.slice(-maxLenght) : numExib}
+            <div className='div-histlow'>{conta}</div>
           </div>
           <div className='div-nums'>
             <button className='btn' id="CE" onClick={bttLimparHist}>AC</button>
