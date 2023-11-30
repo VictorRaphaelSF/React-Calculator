@@ -7,6 +7,7 @@ function App() {
   const [operador, setOperador] = useState('');
   const [conta, setConta] = useState('');
   const [valConta, setValConta] = useState(false);
+  const [histContas, setHistContas] = useState('');
   const maxLenght = 18;
 
   const calculateResult = () => {
@@ -20,7 +21,9 @@ function App() {
       setNumExib(parseFloat(vlPass) - parseFloat(numExib));
     }
     if (!valConta) {
-      setConta([...conta, `${vlPass} ${operador} ${numExib} = `]);
+      const resultadoConta = `${vlPass} ${operador} ${numExib} = `;
+      setConta(resultadoConta);
+      setHistContas(prevHistorico => [...prevHistorico, resultadoConta]);
       setValConta(true);
     }
   };
@@ -104,7 +107,7 @@ function App() {
         </div>
       </div>
     </>
-  )
+  );
 }
 
 export default App
