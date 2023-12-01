@@ -61,6 +61,13 @@ body {
   color: rgb(99, 99, 99);
 }
 
+.div-histleft {
+  font-size: 28px;
+  color: rgb(255, 255, 255);
+  display: flex;
+  padding-left: 24px;
+}
+
 .btn {
   vertical-align: middle;
   height: 75px;
