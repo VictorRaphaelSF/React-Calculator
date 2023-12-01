@@ -34,7 +34,7 @@ function App() {
       setValConta(false);
       setConta('');
     }
-    if (numExib === '0' || operador !== '') {
+    if (numExib == '') {
       setNumExib(vlExato);
     } else {
       setNumExib(numExib + vlExato);
@@ -52,6 +52,10 @@ function App() {
     setConta('');
   };
 
+  const bttZerar = () => {
+    setNumExib(0);
+  };
+
   const bttBackSpace = () => {
     setNumExib((prevValue) => {
       const stringValue = String(prevValue);
@@ -63,7 +67,7 @@ function App() {
     var operador = e.target.value;
    setOperador(operador)
    setVlPass(numExib)
-   setNumExib(0); 
+   setNumExib(''); 
   }
 
   return (
@@ -76,7 +80,7 @@ function App() {
           </div>
           <div className='div-nums'>
             <button className='btn' id="CE" onClick={bttLimparHist}>AC</button>
-            <button className='btn' id="C">C</button>
+            <button className='btn' id="C" onClick={bttZerar}>C</button>
             <button className='btn back' id="8" onClick={() => bttBackSpace()}><svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"> <path d="M7.70015 6.35982L3.53349 11.3598C3.22445 11.7307 3.22445 12.2693 3.53349 12.6402L7.70015 17.6402C7.89015 17.8682 8.1716 18 8.46838 18H18C19.6569 18 21 16.6569 21 15V9C21 7.34315 19.6569 6 18 6H8.46837C8.1716 6 7.89015 6.13182 7.70015 6.35982Z" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> <path d="M15 10L13 12M13 12L11 14M13 12L11 10M13 12L15 14" stroke="#000000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"></path> </g></svg></button>
             <button className='btn' id="7" onClick={bttNumb} value={7}>7</button>
             <button className='btn' id="1" onClick={bttNumb} value={8}>8</button>
