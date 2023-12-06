@@ -3,6 +3,7 @@ import './App.css';
 
 function App() {
   const [numExib, setNumExib] = useState('');
+  const [resultados, setResultados] = useState('');
   const [vlPass, setVlPass] = useState('');
   const [operador, setOperador] = useState('');
   const [conta, setConta] = useState('');
@@ -15,16 +16,20 @@ function App() {
     let resultado;
     if (operador == "÷") {
       setNumExib(parseFloat(vlPass) / parseFloat(numExib));
-    }else if (operador == "x") {
+      resultado = `${vlPass} ${operador} ${numExib} = ${parseFloat(vlPass) / parseFloat(numExib)}`;
+    } else if (operador == "x") {
       setNumExib(parseFloat(vlPass) * parseFloat(numExib));
-    }else if (operador == "+") {
+      resultado = `${vlPass} ${operador} ${numExib} = ${parseFloat(vlPass) * parseFloat(numExib)}`;
+    } else if (operador == "+") {
       setNumExib(parseFloat(vlPass) + parseFloat(numExib));
-    }else if (operador == "-") {
+      resultado = `${vlPass} ${operador} ${numExib} = ${parseFloat(vlPass) + parseFloat(numExib)}`;
+    } else if (operador == "-") {
       setNumExib(parseFloat(vlPass) - parseFloat(numExib));
+      resultado = `${vlPass} ${operador} ${numExib} = ${parseFloat(vlPass) - parseFloat(numExib)}`;
     }
     if (!valConta) {
-      const resultadoConta = `${vlPass} ${operador} ${numExib} = ${resultado} `;
-      const result = `${vlPass} ${operador} ${numExib} =  `;
+      const resultadoConta = `${vlPass} ${operador} ${numExib} =`;
+      const result = <div>{resultado}</div>;
       setConta(resultadoConta);
       setConta(result);
       setHistContas(prevHistorico => [...prevHistorico, resultadoConta]);
@@ -32,14 +37,14 @@ function App() {
       setValConta(true);
     }
   };
-  
+
   const bttNumb = (number) => {
     const vlExato = number.target.value;
     if (valConta) {
       setValConta(false);
       setConta('');
     }
-    if (numExib == '') {
+    if (numExib == '0') {
       setNumExib(vlExato);
     } else {
       setNumExib(numExib + vlExato);
@@ -55,7 +60,8 @@ function App() {
     setVlPass('');
     setOperador('');
     setConta('');
-  };
+    setHistContas('');
+    };
 
   const bttZerar = () => {
     setNumExib(0);
@@ -80,8 +86,8 @@ function App() {
       <div className='div-centro'>
         <div className='calc-esq'>
         <div className='div-res'>
-            {numExib.length > maxLenght ? '...' + numExib.slice(-maxLenght) : numExib}
-            <div className='div-histlow'>{conta}</div>
+            {numExib}
+            <div className='div-histlow'>{histContas}</div>
           </div>
           <div className='div-nums'>
             <button className='btn' id="CE" onClick={bttLimparHist}>AC</button>
@@ -113,7 +119,7 @@ function App() {
               <p>Resultados</p>
             </div>
             <div className='div-histleft'>
-              {histContas}
+              {histLeft}
             </div>
           </div>
         </div>
