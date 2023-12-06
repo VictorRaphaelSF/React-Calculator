@@ -49,6 +49,7 @@ function App() {
     } else {
       setNumExib(numExib + vlExato);
     }
+    setHistContas('');
   };
 
   const bttIgual = () => {
@@ -72,6 +73,7 @@ function App() {
       const stringValue = String(prevValue);
       return stringValue.slice(0, -1);
     });
+    setHistContas('');
   };
 
   function operadorResult (e) {
